@@ -1,0 +1,36 @@
+<div class="row">
+    <form  [formGroup]="form" (ngSubmit)="calcular()">
+        <div class="col-6"> 
+            <label for="peso" class="form-label">Peso</label>
+            <input formControlName="peso" type="number" id="peso" class="form-control">
+            <div *ngIf="form.get('peso') && (form.get('peso').dirty || form.get('peso').touched) ">
+                <div *ngIf="form.get('peso').errors['required']"><p>Campo obrigatório</p> </div>
+                    <div *ngIf="form.get('peso').errors['min']">O valor mínimo é 1</div>
+                        <div *ngIf="form.get('peso').errors['max']">O valor máximo é 150</div>
+                
+
+            </div>
+        </div>
+
+        <div class="col-6"> 
+            <label for="altura" class="form-label">Altura</label>
+            <input formControlName="altura" type="number" class="form-control">
+            <div *ngIf="form.get('altura') && (form.get('altura').dirty || form.get('altura').touched) ">
+                <div *ngIf="form.get('altura').errors['required']"><p>Campo obrigatório</p> </div>
+                    <div *ngIf="form.get('altura').errors['min']">O valor mínimo é 0.01</div>
+                        <div *ngIf="form.get('altura').errors['max']">O valor máximo é 3</div>
+            </div>
+        </div>
+        <p></p>
+        <button  [disabled]="!form.valid" class="btn btn-primary" type="submit"  >Calular</button>
+
+        <p></p>
+        <p>Seu imc é de: {{imc}} </p>
+        <p>Seu tipo é: {{tipo}}</p>
+
+
+
+    </form>
+<div class="col-6"><button  routerLink="/principal" routerLinkActive="active"type="button" class="btn btn-outline-primary me-2">Voltar</button></div>
+    
+</div>
